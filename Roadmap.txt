@@ -1,0 +1,15 @@
+MAJ du 29/09/2015
+A faire :
+   - Accueil :
+      * revoir organisation (carroussel).
+   - Note de synthese :
+   - Client :
+    	
+   - Collaborateur :
+
+   - Contrat : 
+      
+   - Affectation :
+	   * bug insertion ligne DatePicker
+  - Profils :
+    * Responsive???

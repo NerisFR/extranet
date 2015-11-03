@@ -1,0 +1,45 @@
+<?php
+session_start();
+if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['pass'])){
+    extract($_POST);
+    include("forms/functions.php");
+
+
+
+    $sql = " SELECT id FROM Collaborateurs WHERE login='$login' AND password= '$pass'";
+    $req = mysql_query($sql) or die(mysql_error());
+    if(mysql_num_rows($req)>0){
+    $_SESSION['auth']=array(
+        'login' => $login,
+        'pass' => $pass
+      );
+      header('Location:forms/dash.php');
+    }
+    else {
+      echo "Mauvais identifiant";
+    }
+
+}
+?>
+
+<form action="loggin.php" method="post">
+	
+    <p>&nbsp;</p>
+    <p>Identifiez-vous</p>
+    <p>&nbsp;</p>
+    <form id="form1" name="form1" method="post" action="">
+      <p>
+        <label for="id">Identifiant : </label>
+        <input type="text" name="login" />
+      </p>
+      <p>
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" name="pass"/>
+      </p>
+      <p>
+        <input type="submit" name="connect" value="Envoyer" />
+      </p>
+    </form>
+    <p>&nbsp;</p>
+		    
+</form>

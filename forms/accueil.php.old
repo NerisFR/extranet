@@ -1,0 +1,47 @@
+<?php
+  //   session_start();
+  //   require("extranet/auth.php");
+  //   if(Auth::isLogged()){
+      
+  //   }
+  //   else{
+  //     header('Location:forms/404.php');
+  //   }
+
+  // require_once("functions.php");
+  // global $db;
+
+  // $sql = "SELECT id, nom_usage FROM collaborateurs ORDER BY nom_usage";
+  // $sth = $db->query($sql);
+  // $list_collab = $sth->fetchall();
+
+  // $myid = $_SESSION['auth']['myid'];
+  
+?>
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/extranet/forms/ctrl_accueil.js"></script>
+<script type="text/javascript" src="/extranet/src/assets/canvasjs-1.6.2/canvasjs.min.js"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="/extranet/src/css/app.css"> -->
+
+<div class="zonetitre" id="zonetitre">
+
+<p height="30" class="titre"> BIENVENUE </p>
+
+</div>
+<div class="zone" id="zone" align="center">
+	<p class="entete">Mes dernières notes de syntheses</p>
+	<div class="afficher" id="listNDS"></div>
+</div>
+
+<div style='height:20px'>
+</div>
+
+<div class="zone" id="zone" align="center" >
+	<p class="entete">Mes rapports</p>
+    <div class="afficher" id="rapport" style="height:400px;overflow-y:scroll"></div>
+</div>
+<div class="zone" id="zone" align="center">
+  <p class="entete">Mes alertes</p>
+</div>
