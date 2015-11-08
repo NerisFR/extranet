@@ -1,24 +1,4 @@
-<?php
-  //   session_start();
-  //   require("extranet/auth.php");
-  //   if(Auth::isLogged()){
-      
-  //   }
-  //   else{
-  //     header('Location:forms/404.php');
-  //   }
-
-  // require_once("functions.php");
-  // global $db;
-
-  // $sql = "SELECT id, nom_usage FROM collaborateurs ORDER BY nom_usage";
-  // $sth = $db->query($sql);
-  // $list_collab = $sth->fetchall();
-
-  // $myid = $_SESSION['auth']['myid'];
-  
-?>
-    
+   
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="./forms/ctrl_accueil.js"></script>
@@ -28,7 +8,6 @@
 <div class="row" id="WidgHours">
 
 </div>
-
 <div class="row">
     <!-- Left col -->
     <section class="col-lg-6 connectedSortable">

@@ -37,74 +37,29 @@
     $cli = $db->query($req);
     $NDS = $cli->fetchall();
 
-    echo "<div class='box box-primary'>";
-        echo "<div class='box-header with-border'>";
-            echo "<h3 class='box-title'>Données de synthèse</h3><i class='pull-right fa fa-fw fa-chevron-down' style='cursor:Pointer;text-align: right;' id='icon-bilan-tsk'/>";
-        echo "</div>";
+echo "<div class='box box-primary'>";
+    echo "<div class='box-header with-border'>";
+        echo "<h3 class='box-title'>Données de synthèse</h3><i class='pull-right fa fa-fw fa-chevron-down' style='cursor:Pointer;text-align: right;' id='icon-bilan-tsk'/>";
     echo "</div>";
+    
+    $ligne = array('Admin. Syst.','Maintenance Matériel','Gestion de parc','Etude de prix','Install. / Param.','Assistance Utilisateur','Formation','Gestion de projet','Developpement','Reunion','Déplacement','Controle journalier','Autre');
 
-    echo "<div class='box-body' id='table-bilan-tsk'>";
-        echo "<table class='pull-center'>";
-            echo "<tr width='200'>";
-            echo "<td>";
-            echo "<table class='table table-bordered table-striped'>";
-                echo "<tr  rowspan='2' width='40' height='35'>";
-                    echo "<th>Période</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Admin. Syst.</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Maintenance Matériel</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Gestion de parc</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Etude de prix</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Install. / Param.</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Assistance Utilisateur</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Formation</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Gestion de projet</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Developpement</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Reunion</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Déplacement</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Controle journalier</th>";
-                echo "</tr>";
-                echo "<tr width='40' height='25'>";
-                    echo "<th>Autre</th>";
-                echo "</tr>";
-            echo "</table>";
-            echo "</td>";
-            echo "<td>";
-                echo "<table id='tdbh' class='table table-bordered table-striped table-hover display nowrap' cellspacing='0' width='100%''>";
-                $heur =0;
-                echo "<thead>";
-                echo "<tr height='35'>";
-                    for ($i=0; $i<12; $i++) {
-                        $var = $NDS[$i][1]." ".$NDS[$i][0];
-                        echo "<th class='sorting'>".$var."</th>";
-                    }
-                echo '</tr>';
-                echo "</thead>";
-                for($j=2; $j<15; $j++) {
-                    echo "<tr height='25'>";
+    echo "<div class='box-body' id='table-bilan-tsk'>"; 
+        echo "<table class='table table-border table-hover display' cellspacing='0' width='100%'>";
+            $heur =0;
+            echo "<thead>";
+            echo "<tr height='45'>";
+                echo "<th>Période</th>";
+                for ($i=0; $i<12; $i++) {
+                    $var = $NDS[$i][1]." ".$NDS[$i][0];
+                    echo "<th class='sorting'>".$var."</th>";
+                }
+            echo '</tr>';
+            echo "</thead>";
+            for($j=2; $j<15; $j++) {
+                
+                echo "<tr height='25'>";
+                    echo "<th>".$ligne[$j-2]."</th>";
                     for ($i=0; $i<12; $i++) {
                         if (!(($NDS[$i][$j])==0)){
                             $var = $NDS[$i][$j];
@@ -114,18 +69,11 @@
                             echo "<td>-</td>";
                         }
                     }
-                    echo '</tr>';
-                }   
-            echo "</table>";
-        echo "</td>";
-//        echo "<tr>";
-//            echo "<td height='20'>&nbsp;</td>";
-//        echo "</tr>";
+                echo '</tr>';
+            }   
         echo "</table>";
     echo "</div>";
-
-require_once ('../../../plugins/jpgraph-3.5.0b1/src/jpgraph.php');
-require_once ('../../../plugins/jpgraph-3.5.0b1/src/jpgraph_bar.php');
+echo "</div>";
 
 for ($i=2; $i<15; $i++){
     $TSK = 0;
@@ -145,26 +93,46 @@ echo "</div>";
 echo "</div>";
 echo "<div class='box-body'>";
 
+echo "<div id='chartContainer' style='height: 400px; width: 100%;'></div>";
+
+echo "</div>";
+
+// echo "<script type='text/javascript'>";
+
+//         echo "var donut = new Morris.Donut({";
+//           echo "element: 'chartContainer',";
+//           echo "resize: true,";
+//           echo "colors: ['#3c8dbc', '#0073b7', '#00c0ef'],";
+//           echo "data: [";
+//             for ($i=0; $i<13; $i++) {
+//                 echo "{label: '".$task[$i]."', value: '".$total[$i]."'},";
+//             }
+//           echo "],";
+//           echo "hideHover: 'auto'";
+//         echo "});";
+
+// echo "</script>";
 echo "<script type='text/javascript'>";
     echo "var chart = new CanvasJS.Chart('chartContainer', {";
       // echo "theme: 'theme2',";
     echo "animationEnabled: true,";
-    echo "backgroundColor: '#f1f1f1',";
+    echo "backgroundColor: '#ffffff',";
       echo "title:{";
         echo "text: 'Bilan par taches',";
         echo "fontSize: 30";
       echo "},";
 
       echo "legend:{";
-        echo "fontFamily: 'Open sans',";
+        // echo "fontFamily: 'Open sans',";
         echo "verticalAlign: 'center',";
         echo "horizontalAlign: 'left'";
       echo "},";
+      echo "theme: 'theme2',";
       echo "data: [";
       echo "{";
         echo "type: 'pie',"; 
         echo "indexLabelFontSize: 12,";
-        echo "indexLabelFontFamily: 'Open sans',";
+        // echo "indexLabelFontFamily: 'Open sans',";
         echo "indexLabelFontColor: 'darkgrey',";
         echo "indexLabelLineColor: 'darkgrey',";
         echo "indexLabelPlacement: 'outside',";
@@ -181,9 +149,7 @@ echo "<script type='text/javascript'>";
 
     echo "chart.render();";
 echo "</script>";
-echo "<div id='chartContainer' style='height: 300px; width: 700px;'></div>";
 
-echo "</div>";
 
 ?>
   

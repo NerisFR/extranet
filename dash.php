@@ -206,6 +206,7 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
                 <li><a class="subcontent" id="mycollab" href="admin/collab/gest_collab.php"><i class="fa fa-circle-o"></i> Gest. des collaborateurs</a></li>
                 <li><a class="subcontent" id="myaffect" href="admin/affect/gest_affect.php"><i class="fa fa-circle-o"></i> Gest. des affectations</a></li>
                 <li><a class="subcontent" id="myprofils" href="admin/profils/gest_profils.php"><i class="fa fa-circle-o"></i> Gest. des profils</a></li>
+                <li><a class="subcontent" id="myusercli" href="admin/usercli/gest_usercli.php"><i class="fa fa-circle-o"></i> Gest. des util. clients</a></li>
               </ul>
             </li>
         </section>
