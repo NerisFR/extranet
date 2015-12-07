@@ -55,7 +55,8 @@
         <table id='listNDS' class='table table-bordered table-striped table-hover display nowrap' cellspacing="0" width="100%">
         <thead>
         <tr>
-        <th style='text-align:center'>Date</th>
+        <th class='hide'>Date_tri</th>
+        <th class='col-xs-2' style='text-align:center'>Date</th>
         <th style='text-align:center'>Collab.</th>
         <th style='text-align:center'>Client</th>
         <th style='text-align:center'>Contrat</th>
@@ -64,19 +65,17 @@
         <th style='text-align:center'>Départ</th>
         <th style='text-align:center'>Tps</th>
         <th>Commentaire</th>
-<!--         <th style="opacity:0">&nbsp;</th>
-        <th style="opacity:0">&nbsp;</th>
-        <th style="opacity:0">&nbsp;</th> -->
         </tr>
         </thead>
         <tbody>
 
 <?php
-    setlocale(LC_TIME, "fr_FR");
+    setlocale (LC_TIME, 'fr_FR.utf8','fra'); 
     foreach ($NDS as $row) {
         echo "<tr id='$row[0]' title='Double-clic pour ouvrir'>";
         $compar = new datetime($row[1]);
-        echo "<td>".date("d/m/Y", strtotime($row[1]))."</td>";
+        echo "<td class='hide'>".date("Ymd", strtotime($row[1]))."</td>";
+        echo "<td>".strftime("%a %d %b %Y", strtotime($row[1]))."</td>";
         echo "<td>".$row[10]."</td>";
         echo "<td>".$row[2]."</td>";
         echo "<td>".$row[8]."</td>";
@@ -85,21 +84,6 @@
         echo "<td>".$row[4]."</td>";
         echo "<td>".$row[5]."</td>";
         echo "<td style='text-overflow:ellipsis'>".$row[6]."</td>";
-//        echo "<span>".$row[6]."</span>";
-//        echo "</td>";
-        // if ($compar < $today){
-        //     echo "<td TITLE='Modifier'>&nbsp;</span>";
-        // }
-        // else{
-        //     echo "<td TITLE='Modifier' class='e-nds'><i id='$row[0]' class='ion-compose edit-nds'></i></td>";
-        // }
-        // echo "<td TITLE='Consulter'><i id='$row[0]' class='ion-search view-nds'></i></td>";
-        // if ($compar < $today){
-        //     echo "<td TITLE='Supprimer'>&nbsp;</td>";
-        // }
-        // else{
-        //     echo "<td TITLE='Supprimer' class='list del'><i id='$row[0]' class='ion-close del-nds'></i></td>";
-        // }
         echo "</tr>";
     };
 ?>
@@ -133,6 +117,18 @@
                 infoFiltered: "(filtrage sur un total de _MAX_ enregistrement)",
                 search: "Recherche"
             },
+            columns: [
+                {"bVisible": false},
+                {"iDataSort": 0},
+                {"bSortable": true},
+                {"bSortable": true},
+                {"bSortable": true},
+                {"bSortable": true},
+                {"bSortable": false},
+                {"bSortable": false},
+                {"bSortable": true},
+                {"bSortable": false}
+            ],
             responsive: {
                 details: {
                     renderer: function ( api, rowIdx ) {

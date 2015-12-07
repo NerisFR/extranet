@@ -35,7 +35,7 @@ $(function() {
         });
  	});
 	$(document).on('click','#btn_add_news',function(){
-		var commentaire = $('#comment').val();
+		commentaire = $('#comment').val();
 		$.ajax({
         	type: "POST",
 			url: "forms/req_accueil_add_news.php",

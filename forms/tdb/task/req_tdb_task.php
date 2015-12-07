@@ -6,7 +6,7 @@
     $clientid = $_POST['client_id'];
     $contratid = $_POST['contrat_id'];
     $annees = $_POST['annees'];
-    $sql = "SELECT demarrage FROM contrats WHERE contrats.id='$contratid'";
+    $sql = "SELECT demarrage, base_sem, nb_mois FROM contrats WHERE contrats.id='$contratid'";
     $date = $db->query($sql);
     $dem = $date->fetch();
     $demarrage = $dem[0];
@@ -23,6 +23,7 @@
         $date_fin =  $annee_fin."/".date("m", strtotime($demarrage))."/".date("d", strtotime($demarrage));
         }
 
+
         $req = "SELECT  D.ANNEE,(SELECT mois.nom_court FROM mois WHERE mois.id = D.MOIS), ADM_SYS, MAINTENANCE, GEST_PARC, ETUDE_PRIX, INSTALL, ASSISTANCE, FORMATION, PROJET, DEVELOPPEMENT, REUNION, DEPLACEMENT, CONTROLE, AUTRE
             FROM (SELECT MONTH(calendrier.Jour) AS MOIS, Year(calendrier.Jour) AS ANNEE
             FROM calendrier 
@@ -33,6 +34,7 @@
             WHERE (((contrats.id)=$contratid) AND ((nds.Jour) BETWEEN '$date_deb' AND '$date_fin'))
             GROUP BY Month(nds.Jour), Year(nds.Jour))  AS N ON (D.ANNEE=N.ANNEE) AND (D.MOIS=N.MOIS)
             ORDER BY D.ANNEE, D.MOIS;" or die (mysql_error());
+    
 
     $cli = $db->query($req);
     $NDS = $cli->fetchall();
@@ -50,7 +52,7 @@ echo "<div class='box box-primary'>";
             echo "<thead>";
             echo "<tr height='45'>";
                 echo "<th>Période</th>";
-                for ($i=0; $i<12; $i++) {
+                for ($i=0; $i<$dem[2]; $i++) {
                     $var = $NDS[$i][1]." ".$NDS[$i][0];
                     echo "<th class='sorting'>".$var."</th>";
                 }
@@ -60,7 +62,7 @@ echo "<div class='box box-primary'>";
                 
                 echo "<tr height='25'>";
                     echo "<th>".$ligne[$j-2]."</th>";
-                    for ($i=0; $i<12; $i++) {
+                    for ($i=0; $i<$dem[2]; $i++) {
                         if (!(($NDS[$i][$j])==0)){
                             $var = $NDS[$i][$j];
                             echo "<td>".$NDS[$i][$j]."</td>";
@@ -77,7 +79,7 @@ echo "</div>";
 
 for ($i=2; $i<15; $i++){
     $TSK = 0;
-    for ($j=0; $j<12; $j++){
+    for ($j=0; $j<$dem[2]; $j++){
         $TSK = $TSK + $NDS[$j][$i];
     }
     $total[] = $TSK;

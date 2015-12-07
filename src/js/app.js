@@ -27,6 +27,8 @@ $(function() {
         }  
     })
 
+
+
     $(".subcontent").click(function (){
         page=$(this).attr("href");
 //        alert("test");
@@ -37,6 +39,24 @@ $(function() {
                 afficher(html);
                 $('#nav').toggleClass('hide');
                 $('#nav').toggleClass('show');
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert(textStatus);
+            }
+        
+        })
+        return false;
+    })
+
+    $(".myoptions").click(function (){
+        page=$(this).attr("href");
+        $.ajax({
+            url : "forms/"+page,
+            cache : false,
+            success : function(html){
+                afficher(html);
+                $('.user-options').toggleClass('show');
+                $('.user-options').toggleClass('hide');
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){
                 alert(textStatus);

@@ -48,6 +48,9 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
     <!--<link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />-->
     <link href="./plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
 
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="./font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="./dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -99,7 +102,7 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
                   <img src="dist/img/user9-160x160.jpg" class="user-image" alt="User Image" />
                   <span class="hidden-xs"><?php echo $myusage ?></span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu user-options">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/user9-160x160.jpg" class="img-circle" alt="User Image" />
@@ -108,23 +111,10 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
                       <small>Membre depuis Nov. 2012</small>
                     </p>
                   </li>
-                  <!-- Menu Body -->
-                  <!-- <li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </li> -->
-                  <!-- Menu Footer-->
                   <li class="user-footer">
-                    <!-- <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profil</a>
-                    </div> -->
+                    <div class="pull-left">
+                      <a href="myspace/options/gest_options.php" id='myoptions' class="btn btn-default btn-flat myoptions">Profil</a>
+                    </div>
                     <div class="pull-right">
                       <a href="./forms/logout.php" class="btn btn-default btn-flat">Se deconnecter</a>
                     </div>
@@ -179,13 +169,13 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
               </a>
               <ul class="treeview-menu">
                 <li><a class="subcontent" id="subcontent" href="nds/consult/consult.php"><i class="fa fa-circle-o"></i> Mes notes de synthèse</a></li>
-<!--                 <li><a class="subcontent" id="subcontent" href="#"><i class="fa fa-circle-o"></i> Mon planning</a></li>
-                <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Mon véhicule</a></li> -->
+                <li><a class="subcontent" id="subcontent" href="myspace/planning/gest_planning.php"><i class="fa fa-circle-o"></i> Mon planning</a></li>
+                <!-- <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Mon véhicule</a></li> -->
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-pie-chart"></i>
+                <i class="fa fa-files-o"></i>
                 <span>Tableaux de bord</span>
                 <span class="fa fa-angle-left pull-right"></span>
               </a>
@@ -196,7 +186,7 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
             </li>
             <li class="treeview"  id="myadmin">
               <a href="#">
-                <i class="fa fa-cog"></i>
+                <i class="fa fa-pie-chart"></i>
                 <span>Administration</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -206,7 +196,6 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
                 <li><a class="subcontent" id="mycollab" href="admin/collab/gest_collab.php"><i class="fa fa-circle-o"></i> Gest. des collaborateurs</a></li>
                 <li><a class="subcontent" id="myaffect" href="admin/affect/gest_affect.php"><i class="fa fa-circle-o"></i> Gest. des affectations</a></li>
                 <li><a class="subcontent" id="myprofils" href="admin/profils/gest_profils.php"><i class="fa fa-circle-o"></i> Gest. des profils</a></li>
-                <li><a class="subcontent" id="myusercli" href="admin/usercli/gest_usercli.php"><i class="fa fa-circle-o"></i> Gest. des util. clients</a></li>
               </ul>
             </li>
         </section>
@@ -368,7 +357,20 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
             </ul><!-- /.control-sidebar-menu -->
 
           </div><!-- /.tab-pane -->
-          
+          <div class="modal fade" id="myspace" tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h3 class="modal-title">Paramétrage</h3>
+                      </div>
+                      <div class="modal-body">
+                                          
+                      </div>
+                  </div>
+              </div>       
+          </div>
+
 <!--  -->
 
           <!-- Stats tab content -->
@@ -442,7 +444,7 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
     <!--<script src="https://code.jquery.com/jquery-2.1.4.js"></script>-->
     <script src="./plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="./plugins/jQueryUI/jquery-ui.min.js" type="text/javascript"></script>
      <!--Bootstrap 3.3.2 JS--> 
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- DATA TABES SCRIPT -->
@@ -465,9 +467,12 @@ $mygprofil=$_SESSION['auth']['gest_profils'];
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="./src/js/app.js"></script>
+    <!-- fullCalendar 2.2.5 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
+  <script src="./plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js" type="text/javascript"></script>
+    
     <script type="text/javascript">
       $.widget.bridge('uibutton', $.ui.button);
     </script>
